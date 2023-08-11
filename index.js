@@ -33,6 +33,7 @@ const {
 
 const { verifyOTP } = require("./controllers/twoStepVerification");
 
+const { verifyEmailToken } = require("./controllers/emailVerification");
 
 // analizador sintáctico del cuerpo de la solicitud (necesario para los métodos POST y PUT)
 const bodyParser = require("body-parser");
@@ -55,6 +56,9 @@ app.post("/api/user", userPost);
 
 // Veficación del OTP para la verificación en dos pasos (No protegido por JWT)
 app.post("/api/otp/verification", verifyOTP);
+
+//Verificación del correo de un nuevo usuario (No protegido por JWT)
+app.post("/api/email/verification", verifyEmailToken);
 
 /**
  * Middleware para verificar el token JWT en las rutas protegidas.

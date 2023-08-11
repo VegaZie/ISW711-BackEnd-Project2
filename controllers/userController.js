@@ -115,9 +115,22 @@ const userDelete = (req, res) => {
   }
 };
 
+const userPatchVerified = (_id, user, callback) => {
+  User.findByIdAndUpdate(_id, user, { new: true }, function (err, updatedUser) {
+    if (err) {
+      console.error("Error al buscar el usuario:", err);
+      callback(err, null); // Llama al callback con el error
+    } else {
+      console.log("Usuario verificado");
+      callback(null, updatedUser); // Llama al callback con el usuario actualizado
+    }
+  });
+};
+
 module.exports = {
   userPost,
   userGet,
   userPatch,
   userDelete,
+  userPatchVerified,
 };

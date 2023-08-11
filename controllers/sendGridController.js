@@ -11,8 +11,8 @@ const sendEmailVerification = async (user) => {
     to: user.email,
     from: "dvegasa@est.utn.ac.cr", // Change to your verified sender
     subject: "Verificación de email AI Prompts Library",
-    text: `Estimado usuario haga click en el siguiente link para verificar su usuario: http://localhost:3001/api/email/verification?id=${verificationToken}`,
-    html: `<p>Estimado usuario haga click en el siguiente link para verificar su usuario: http://localhost:3001/api/email/verification?id=${verificationToken}</p>`,
+    text: `Estimado usuario haga click en el siguiente link para verificar su usuario: http://localhost:3001/api/email/verification?token=${verificationToken}`,
+    html: `<p>Estimado usuario haga click en el siguiente link para verificar su usuario: http://localhost:3001/api/email/verification?token=${verificationToken}</p>`,
   };
   console.log("Email enviado")
   try {
