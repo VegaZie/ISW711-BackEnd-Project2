@@ -14,7 +14,7 @@ const promtSchema = new mongoose.Schema({
   quantity: { type: Number },
   size: { type: String },
   response: { type: String },
-  imageresponse: { type: [imageSchema], required: true  },
+  imageresponse: { type: [imageSchema] },
   userID: { type: String },
   tags: { type: [String] },
   type: { type: String },
