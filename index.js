@@ -31,6 +31,9 @@ const {
   executeEditPromt,
 } = require("./controllers/openAiController.js");
 
+const { verifyOTP } = require("./controllers/twoStepVerification");
+
+
 // analizador sintáctico del cuerpo de la solicitud (necesario para los métodos POST y PUT)
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -49,6 +52,9 @@ app.post("/api/authenticate", authenticate);
 
 // Creación de usuario (no protegido por JWT)
 app.post("/api/user", userPost);
+
+// Veficación del OTP para la verificación en dos pasos (No protegido por JWT)
+app.post("/api/otp/verification", verifyOTP);
 
 /**
  * Middleware para verificar el token JWT en las rutas protegidas.

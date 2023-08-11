@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const secretKey = process.env.SECRET_KEY;
+const { twoStepVerification } = require("../controllers/twilioController");
 
 /**
  * Genera un token JWT basado en la información del usuario proporcionada.
@@ -49,11 +50,16 @@ async function authenticate(req, res) {
 
     const token = generateJWTToken(user);
 
+    if (user.twoStepVerification) {
+      twoStepVerification(user);
+    }
+
     return res.json({
       token,
       userRole: user.role,
       userId: user._id,
       userName: user.name,
+      twoSetp: user.twoStepVerification
     });
   } catch (error) {
     console.error("Error al autenticar el usuario:", error);
