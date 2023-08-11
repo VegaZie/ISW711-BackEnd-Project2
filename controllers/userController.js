@@ -1,5 +1,7 @@
 const User = require("../models/userModel");
 
+const { sendEmailVerification } = require("./sendGridController");
+
 /**
  * Crea un nuevo usuario.
  *
@@ -16,6 +18,7 @@ const userPost = async (req, res) => {
         location: `/api/users/?id=${user.id}`,
       });
       res.json(user);
+      sendEmailVerification(user);
     })
     .catch((err) => {
       res.status(422);
