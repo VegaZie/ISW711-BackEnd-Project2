@@ -14,6 +14,7 @@ const sendEmailVerification = async (user) => {
     text: `Estimado usuario haga click en el siguiente link para verificar su usuario: http://localhost:3001/api/${verificationToken}`,
     html: `<p>Estimado usuario haga click en el siguiente link para verificar su usuario: http://localhost:3001/api/${verificationToken}</p>`,
   };
+  console.log("Email enviado")
   try {
     await sgMail.send(msg);
   } catch (error) {
