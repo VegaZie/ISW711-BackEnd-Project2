@@ -59,7 +59,7 @@ async function authenticate(req, res) {
       userRole: user.role,
       userId: user._id,
       userName: user.name,
-      twoSetp: user.twoStepVerification
+      twoStep: user.twoStepVerification
     });
   } catch (error) {
     console.error("Error al autenticar el usuario:", error);
