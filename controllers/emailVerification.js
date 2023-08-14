@@ -6,7 +6,6 @@ function verifyEmailToken(req, res) {
   try {
     const decoded = jwt.verify(req.query.token, secretKey);
     const user = { verified: true };
-    console.log(decoded);
     // Llama a la función userPatchVerified para actualizar el usuario en la base de datos
     userPatchVerified(decoded.id_user, user, (err, updatedUser) => {
       if (err) {
