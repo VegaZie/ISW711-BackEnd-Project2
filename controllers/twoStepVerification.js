@@ -5,7 +5,6 @@ const verifyOTP = async (req, res) => {
 
   try {
     const otpDocument = await OTPModel.findOne({ otp });
-    console.log(otpDocument);
     if (!otpDocument) {
       return res.status(400).json({ message: "OTP inválido" });
     }
