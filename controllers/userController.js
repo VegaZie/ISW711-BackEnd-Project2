@@ -38,8 +38,20 @@ const userPost = async (req, res) => {
 const userGet = (req, res) => {
   // Si se requiere un usuario específico
   let email = req.query.email;
+  let _id = req.query._id;
   if (req.query && email) {
     User.findOne({ email })
+      .populate("users")
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => {
+        res.status(404);
+        console.error("Error al buscar el usuario:", err);
+        res.json({ error: "El usuario no existe" });
+      });
+  } else if (req.query && _id) {
+    User.findOne({ _id })
       .populate("users")
       .then((user) => {
         res.json(user);
